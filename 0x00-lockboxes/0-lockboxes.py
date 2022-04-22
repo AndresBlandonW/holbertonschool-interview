@@ -4,17 +4,15 @@
 
 def canUnlockAll(boxes):
     """Unlock boxes method"""
-    can = len(boxes) - 1
-    unlockBox = []
+    unlockBox = list(range(1, len(boxes)))
+    keys = boxes[0]
 
-    unlockBox.append(0)
-    for i in range(0, can):
-        items = len(boxes[i])
-        for x in range(0, items):
-            if x in unlockBox is not True:
-                unlockBox.append(x)
+    for key in keys:
+        if key in unlockBox:
+            unlockBox.remove(key)
+            keys.extend(boxes[key])
 
-    if len(unlockBox) == can+1:
-        return True
+    if unlockBox:
+        return False
 
-    return False
+    return True

@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Lockboxes"""
 
 
 def canUnlockAll(boxes):
@@ -15,5 +16,5 @@ def canUnlockAll(boxes):
 
     if len(unlockBox) == can+1:
         return True
-    else:
-        return False
+
+    return False

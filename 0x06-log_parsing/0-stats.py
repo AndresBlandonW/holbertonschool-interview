@@ -6,7 +6,7 @@ import re
 
 if __name__ == "__main__":
     # show data
-    lines = 1
+    lines = 0
     fileSize = 0
     listCodes = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0,
                  '404': 0, '405': 0, '500': 0}
@@ -24,7 +24,8 @@ if __name__ == "__main__":
             if (statusCode in listCodes):
                 listCodes[statusCode] += 1
 
-            if (lines == 10):
+            lines += 1
+            if (lines % 10 == 0):
                 listFinal = []
                 for key in listCodes:
                     if (listCodes[key] != 0):
@@ -34,9 +35,7 @@ if __name__ == "__main__":
                 print('File size: {}'.format(fileSize))
                 for x in range(len(listFinal)):
                     print(listFinal[x])
-                lines = 1
-            else:
-                lines += 1
+
         listFinal = []
         for key in listCodes:
             if (listCodes[key] != 0):
@@ -46,7 +45,7 @@ if __name__ == "__main__":
             print('File size: {}'.format(fileSize))
             for x in range(len(listFinal)):
                 print(listFinal[x])
-    except KeyboardInterrupt:
+    except KeyboardInterrupt as e:
         listFinal = []
         for key in listCodes:
             if (listCodes[key] != 0):
@@ -56,3 +55,5 @@ if __name__ == "__main__":
         print('File size: {}'.format(fileSize))
         for x in range(len(listFinal)):
             print(listFinal[x])
+
+        raise

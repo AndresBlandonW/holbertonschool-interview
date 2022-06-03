@@ -1,45 +1,32 @@
-#!/usr/bin/python3
-"""Reads stdin line by line and computes metrics"""
-from sys import stdin, stdout
-import traceback
+from collections import Counter
+from sys import stdin
 
 
-if __name__ == "__main__":
-    # save as a dict using key/value
-    listCodes = {}
-    file_size = 0
-    lines = 0
-    try:
-        # open and read file
-        for line in stdin:
-            # Check if line is empty
-            if line == "":
-                continue
+line_number = 1
+total_file_size = 0
+status_code_counts = Counter()
 
-            file_size += int(line.split()[-1])
-            status_code = line.split()[-2]
+try:
+    for line in stdin:
+        if len(line) == 1:
+            break
 
-            if status_code in listCodes:
-                listCodes[status_code] += 1
-            else:
-                listCodes[status_code] = 1
+        try:
+            status_code, file_size = line.split()[-2:]
+            total_file_size += int(file_size)
+            status_code_counts[int(status_code)] += 1
+        except ValueError:
+            pass
 
-            lines += 1
+        if line_number % 10 == 0:
+            print('File size:', total_file_size)
+            for code, count in sorted(status_code_counts.items()):
+                print('{}: {}'.format(code, count))
 
-            if lines % 10 == 0:
-                print("File size: {}".format(file_size))
-
-                for k in sorted(listCodes):
-                    print("{}: {}".format(k, listCodes[k]))
-
-    except KeyboardInterrupt as e:
-        print("File size: {}".format(file_size))
-
-        for k in sorted(listCodes):
-            print("{}: {}".format(k, ListCodes[k]))
-
-        raise
-
-    print("File size: {}".format(file_size))
-    for k in sorted(listCodes):
-        print("{}: {}".format(k, listCodes[k]))
+        line_number += 1
+except KeyboardInterrupt:
+    pass
+finally:
+    print('File size:', total_file_size)
+    for code, count in sorted(status_code_counts.items()):
+        print('{}: {}'.format(code, count))

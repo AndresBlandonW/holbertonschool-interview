@@ -1,41 +1,46 @@
 #!/usr/bin/python3
-"""Project log parsing"""
+"""Reads stdin line by line and computes metrics"""
 from sys import stdin, stdout
+import traceback
 
 
 if __name__ == "__main__":
-    # show data
-    lines = 0
-    fileSize = 0
+    # save as a dict using key/value
     listCodes = {}
+    file_size = 0
+    lines = 0
     try:
-        for data in stdin:
-            # check empty
-            if data == "":
+        # open and read file
+        for line in stdin:
+            # Check if line is empty
+            if line == "":
                 continue
 
-            statusCode = data.split()[-2]
-            fileSize += int(data.split()[-1])
+            file_size += int(line.split()[-1])
+            status_code = line.split()[-2]
 
-            # Check valid status code
-            if (statusCode in listCodes):
-                listCodes[statusCode] += 1
+            if status_code in listCodes:
+                listCodes[status_code] += 1
             else:
-                listCodes[statusCode] = 1
+                listCodes[status_code] = 1
 
             lines += 1
-            if (lines % 10 == 0):
-                print('File size: {}'.format(fileSize))
-                for key in sorted(listCodes):
-                    print("{}: {}".format(key, listCodes[key]))
 
-        print('File size: {}'.format(fileSize))
-        for key in sorted(listCodes):
-            print("{}: {}".format(key, listCodes[key]))
+            if lines % 10 == 0:
+                print("File size: {}".format(file_size))
+
+                for k in sorted(listCodes):
+                    print("{}: {}".format(k, listCodes[k]))
+
+        print("File size: {}".format(file_size))
+
+        for k in sorted(listCodes):
+            print("{}: {}".format(k, listCodes[k]))
 
     except KeyboardInterrupt as e:
-        print('File size: {}'.format(fileSize))
-        for key in sorted(listCodes):
-            print("{}: {}".format(key, listCodes[key]))
+        print("File size: {}".format(file_size))
+
+        for k in sorted(listCodes):
+            print("{}: {}".format(k, ListCodes[k]))
 
         raise

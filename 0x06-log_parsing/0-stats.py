@@ -1,15 +1,21 @@
 #!/usr/bin/python3
-import sys
+"""Project log parsing"""
+from sys import stdin, stdout
 import re
 
 
 if __name__ == "__main__":
+    # show data
     lines = 1
     fileSize = 0
     listCodes = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0,
                  '404': 0, '405': 0, '500': 0}
     try:
         for data in sys.stdin:
+            # check empty
+            if data == "":
+                continue
+
             codes = re.search('1" (.*)', data).group(1).split(" ")
             statusCode = codes[0]
             fileSize = fileSize + int(codes[1])

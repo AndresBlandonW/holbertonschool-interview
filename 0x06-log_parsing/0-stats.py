@@ -36,7 +36,16 @@ if __name__ == "__main__":
                     print(listFinal[x])
                 lines = 1
             else:
-                lines = lines + 1
+                lines += 1
+        listFinal = []
+        for key in listCodes:
+            if (listCodes[key] != 0):
+                listFinal.append(key + ': ' + str(listCodes[key]))
+
+            listFinal.sort()
+            print('File size: {}'.format(fileSize))
+            for x in range(len(listFinal)):
+                print(listFinal[x])
     except KeyboardInterrupt:
         listFinal = []
         for key in listCodes:
@@ -47,4 +56,3 @@ if __name__ == "__main__":
         print('File size: {}'.format(fileSize))
         for x in range(len(listFinal)):
             print(listFinal[x])
-        lines = 1

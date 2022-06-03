@@ -8,8 +8,7 @@ if __name__ == "__main__":
     # show data
     lines = 0
     fileSize = 0
-    listCodes = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0,
-                 '404': 0, '405': 0, '500': 0}
+    listCodes = {}
     try:
         for data in stdin:
             # check empty
@@ -23,6 +22,8 @@ if __name__ == "__main__":
             # Check valid status code
             if (statusCode in listCodes):
                 listCodes[statusCode] += 1
+            else:
+                listCodes[statusCode] = 1
 
             lines += 1
             if (lines % 10 == 0):

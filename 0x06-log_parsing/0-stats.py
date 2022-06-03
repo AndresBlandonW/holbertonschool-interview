@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+"""test"""
 from collections import Counter
 from sys import stdin
 

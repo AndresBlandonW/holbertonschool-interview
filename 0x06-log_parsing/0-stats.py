@@ -26,34 +26,17 @@ if __name__ == "__main__":
 
             lines += 1
             if (lines % 10 == 0):
-                listFinal = []
-                for key in listCodes:
-                    if (listCodes[key] != 0):
-                        listFinal.append(key + ': ' + str(listCodes[key]))
-
-                listFinal.sort()
                 print('File size: {}'.format(fileSize))
-                for x in range(len(listFinal)):
-                    print(listFinal[x])
+                for key in sorted(listCodes):
+                    print("{}: {}".format(key, listCodes[key]))
 
-        listFinal = []
-        for key in listCodes:
-            if (listCodes[key] != 0):
-                listFinal.append(key + ': ' + str(listCodes[key]))
-
-            listFinal.sort()
-            print('File size: {}'.format(fileSize))
-            for x in range(len(listFinal)):
-                print(listFinal[x])
-    except KeyboardInterrupt as e:
-        listFinal = []
-        for key in listCodes:
-            if (listCodes[key] != 0):
-                listFinal.append(key + ': ' + str(listCodes[key]))
-
-        listFinal.sort()
         print('File size: {}'.format(fileSize))
-        for x in range(len(listFinal)):
-            print(listFinal[x])
+        for key in sorted(listCodes):
+            print("{}: {}".format(key, listCodes[key]))
+
+    except KeyboardInterrupt as e:
+        print('File size: {}'.format(fileSize))
+        for key in sorted(listCodes):
+            print("{}: {}".format(key, listCodes[key]))
 
         raise

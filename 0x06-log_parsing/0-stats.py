@@ -32,11 +32,6 @@ if __name__ == "__main__":
                 for k in sorted(listCodes):
                     print("{}: {}".format(k, listCodes[k]))
 
-        print("File size: {}".format(file_size))
-
-        for k in sorted(listCodes):
-            print("{}: {}".format(k, listCodes[k]))
-
     except KeyboardInterrupt as e:
         print("File size: {}".format(file_size))
 
@@ -44,3 +39,7 @@ if __name__ == "__main__":
             print("{}: {}".format(k, ListCodes[k]))
 
         raise
+
+    print("File size: {}".format(file_size))
+    for k in sorted(listCodes):
+        print("{}: {}".format(k, listCodes[k]))

@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Project log parsing"""
 from sys import stdin, stdout
-import re
 
 
 if __name__ == "__main__":
@@ -15,9 +14,8 @@ if __name__ == "__main__":
             if data == "":
                 continue
 
-            codes = re.search('1" (.*)', data).group(1).split(" ")
-            statusCode = codes[0]
-            fileSize = fileSize + int(codes[1])
+            statusCode = data.split()[-2]
+            fileSize += int(data.split()[-1])
 
             # Check valid status code
             if (statusCode in listCodes):

@@ -6,23 +6,24 @@
  * Return: 1 if n is a palindrome or 0 is not
  */
 
-int is_palindrome(unsigned long n) {
-    int pal;
-    unsigned int reversed = 0, remainder, copyn;
+int is_palindrome(unsigned long n)
+{
 
-    copyn = n;
-    // reversed integer is stored in reversed variable
-    while (n != 0) {
-        remainder = n % 10;
-        reversed = reversed * 10 + remainder;
-        n /= 10;
-    }
+int pal;
+unsigned int reversed = 0, remainder, copyn;
 
-    // palindrome if orignal and reversed are equal
-    if (copyn == reversed)
-        pal = 1;
-    else
-        pal = 0;
+copyn = n;
+while (n != 0)
+{
+remainder = n % 10;
+reversed = reversed * 10 + remainder;
+n /= 10;
+}
 
-    return (pal);
+if (copyn == reversed)
+pal = 1;
+else
+pal = 0;
+
+return (pal);
 }

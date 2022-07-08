@@ -1,39 +1,48 @@
 #include "menger.h"
+#include <stdio.h>
 #include <math.h>
-void level_one(void);
+
+
 /**
- * menger - draws a 2D Menger Sponge
- * @level: level of the Menger Sponge to draw
+ * first - Checks if indices are (1, 1), if so, then square is blank
  *
- * Return: void
+ * @row: Row Index
+ * @colum: Column Index
+ *
+ * Return: 1 if (1, 1), 0 otherwise
  */
 
-void menger(int level)
+int first(int row, int colum)
 {
-	if (level == 0)
-		printf("#\n");
+	while (row != 0 && colum != 0)
+	{
+		if (row % 3 == 1 && colum % 3 == 1)
+			return (0);
 
-	if (level == 1)
-		level_one();
+		row /= 3, colum /= 3;
+	}
+	return (1);
 }
 
 /**
- * level_one - print a 2D Menger Sponge
+ * menger - Entry point
  *
- * Return: void
+ * @level: level of the Menger Sponge to draw
+ *
+ * Return: Nothing
  */
-void level_one(void)
+void menger(int level)
 {
-	int col, row;
+	int runner1, runner2, limit;
 
-	for (col = 0; col < 3; col++)
+	if (level < 0)
+		return;
+
+	for (runner1 = 0, limit = pow(3, level); runner1 < limit; runner1++)
 	{
-		for (row = 0; row < 3; row++)
+		for (runner2 = 0; runner2 < limit; runner2++)
 		{
-			if (col == 1 && row == 1)
-				printf(" ");
-			else
-				printf("#");
+			first(runner1, runner2) == 1 ? printf("%c", '#') : printf("%c", ' ');
 		}
 		printf("\n");
 	}

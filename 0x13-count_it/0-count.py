@@ -1,5 +1,5 @@
 #!/usr/bin/python
-""" queries the Reddit API, parses the title of all hot articles,
+""" Queries the Reddit API, parses the title of all hot articles,
     and prints a sorted count of given keywords
 """
 
@@ -7,7 +7,7 @@ from requests import get
 
 
 def count_words(subreddit, word_list=[], after=''):
-    """ Calling function """
+    """ Count it function """
 
     headers = \
         {'user-agent': 'Mozilla/5.0\
